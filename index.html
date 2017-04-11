@@ -3,8 +3,8 @@
 <head>
     <meta charset="utf-8">
     <title>Hangman Game</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <!-- <link rel="stylesheet" type="text/css" href="/assets/css/reset.css"> -->
+    <link rel="stylesheet" type="text/css" href="./assets/css/style.css">
+    <!-- <link rel="stylesheet" type="text/css" href="/assets/css/reset.css"> --> 
 </head>
 
 <body>
@@ -12,13 +12,23 @@
     <h1>Hangman Game</h1>
     <h2>Click on "Start" button to Start Game</h2>
     <button id="restart" name="restart" type="button">Start</button>
+
+    <br>
+    <br>
+    <audio controls>
+  
+  <source src="abc.mp3" type="audio/mpeg">
+Your browser does not support the audio element.
+</audio>
     
     <h2> Guess Singer</h2>
     <ul id="letters"></ul>
     <h3>Wins: <span id="wins"></span></h3></h3>
     <h3>Losses: <span id="losses"></span></h3>
     <h3>Chances Left: <span id="tries"></span></h3>
-   
+    <b>Filename</b>: <span id='source'></span><br>
+    <b>Currect Singer</b>: <span id='songSinger'></span><br>
+    <b>Album</b>: <span id='songAlbum'></span><br>
     <p id="man"></p>
     <p id="output" class="output"></p>
 	

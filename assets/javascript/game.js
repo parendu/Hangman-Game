@@ -1,6 +1,6 @@
 (function() {
         "use strict";
-        var availableLetters, singer, guessInput, guess, lettersGuessed, lettersMatched, output, man, letters, tries, currentSinger, numLettersMatched, messages, wins, losses;
+        var availableLetters, songs, animal, guessInput, guess, lettersGuessed, lettersMatched, output, man, letters, tries, currentSinger, numLettersMatched, messages, wins, losses;
 
         function setup() {
             /* start configuration optsions */
@@ -8,7 +8,13 @@
             tries = 5;
             wins = 0;
             losses = 0;
-            singer = ["cat", "dog", "cow", "reindeer"];
+            animal = ["cat", "dog", "cow", "reindeer"];
+            songs = [{ filename: "abc.mp3", singer: "abc", album: "Album_nice" },
+    { filename: "def1.mp3", singer: "ladygaga", album: "Album_latest" },
+    { filename: "def2.mp3", singer: "jackson", album: "Album_new" },
+    { filename: "def3.mp3", singer: "britney", album: "Album_old" }
+    // and so on...
+];
             messages = {
                 win: 'You win!',
                 lose: 'Game over!',
@@ -21,7 +27,21 @@
             numLettersMatched = 0;
 
             /* choose a singer */
-            currentSinger = singer[Math.floor(Math.random() * singer.length)];
+           // currentSinger = animal[Math.floor(Math.random() * animal.length)];
+
+            var randomIndex = Math.floor(Math.random() * songs.length);
+            var song = songs[randomIndex];
+            document.querySelector("source").src = song.filename;
+           // document.getElementById("songSinger").textContent = song.singer;
+            document.getElementById("songAlbum").textContent = song.album;
+
+
+            currentSinger = song.singer;
+            console.log("song: " +song.filename);
+            console.log("singer: "+ song.singer);
+            console.log("singer type: "+ typeof currentSinger);
+            
+
 
             /* make #man and #output blank, create vars for later access */
             output = document.getElementById("output");
@@ -52,7 +72,7 @@
             tries = 5;
             //wins = 0;
             //losses = 0;
-            singer = ["cat", "dog", "cow", "reindeer"];
+            animal = ["cat", "dog", "cow", "reindeer"];
             messages = {
                 win: 'You win!',
                 lose: 'Game over!',
@@ -65,14 +85,27 @@
             numLettersMatched = 0;
 
             /* choose a singer */
-            currentSinger = singer[Math.floor(Math.random() * singer.length)];
+            //currentSinger = animal[Math.floor(Math.random() * animal.length)];
+
+             var randomIndex = Math.floor(Math.random() * songs.length);
+            var song = songs[randomIndex];
+            document.querySelector("source").src = song.filename;
+            //document.getElementById("songSinger").textContent = song.singer;
+            document.getElementById("songAlbum").textContent = song.album;
+
+
+            currentSinger = song.singer;
+            
+           console.log("guessed singer " + currentSinger);
+                
+
 
             /* make #man and #output blank, create vars for later access */
             output = document.getElementById("output");
             man = document.getElementById("man");
             guessInput = document.getElementById("letter");
 
-            man.innerHTML = 'You have ' + tries + ' lives remaining';
+            man.innerHTML = tries + ' lives remaining';
             output.innerHTML = '';
 
             document.getElementById("letters").value = '';
@@ -85,7 +118,7 @@
             for (i = 0; i < currentSinger.length; i++) {
                 letter = '<li class="letter letter' + currentSinger.charAt(i).toUpperCase() + '">' + currentSinger.charAt(i).toUpperCase() + '</li>';
                 letters.insertAdjacentHTML('beforeend', letter);
-                console.log(letter);
+                console.log("display letter: "+letter);
             }
 
         } 
@@ -96,7 +129,7 @@
                 output.classList.add('win');
                 wins++;
                 document.getElementById("wins").innerHTML=(wins);
-                startOver();
+                //startOver();
 
             } else {
                 output.innerHTML = messages.lose;
@@ -104,20 +137,23 @@
                 losses++;
                 document.getElementById("losses").innerHTML=(losses);
                 console.log("losses: " + losses);
-                startOver();
+                document.getElementById("songSinger").innerHTML=(currentSinger);
+                //startOver();
             }
+            startOver();
         }
 
         /* Start game - should ideally check for existing functions attached to window.onload */
         window.onload = setup();
 
         /* buttons */
-        debugger
+        
         document.getElementById("restart").onclick = setup;
         
        
         document.onkeyup = function(e) {                                       //1 open
             guess = String.fromCharCode(event.keyCode).toLowerCase();
+            console.log("press letter: "+guess);
             //guess = guessInput.value;
             /* does guess have a value? if yes continue, if no, error */
             if (guess) {                                                       //2 open
@@ -133,12 +169,12 @@
                         output.classList.add("warning");
                     }                                                                              //4 close
                     
-
                     /* does guess exist in current word? if so, add to letters already matched, if final letter added, game over with win message */
                     else if (currentSinger.indexOf(guess) > -1) {               //5 open
                         var lettersToShow;
                         lettersToShow = document.querySelectorAll(".letter" + guess.toUpperCase());
-
+                        console.log("lettersToShow: " + lettersToShow);
+                        
                         for (var i = 0; i < lettersToShow.length; i++) {           //6 open
                             lettersToShow[i].classList.add("correct");
                         }                                                           //6 close
@@ -160,7 +196,7 @@
                     else {                                                            //10 open
                         lettersGuessed += guess;
                         tries--;
-                        man.innerHTML = 'You have ' + tries + ' lives remaining';
+                        man.innerHTML =  tries + '  remaining';
                         if (tries === 0) gameOver();
                         document.getElementById("tries").innerHTML=(tries);
 
