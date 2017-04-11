@@ -1,4 +1,4 @@
-(function() {
+ (function() {
         "use strict";
         var availableLetters, songs, animal, guessInput, guess, lettersGuessed, lettersMatched, output, man, letters, tries, currentSinger, numLettersMatched, messages, wins, losses;
 
@@ -9,12 +9,25 @@
             wins = 0;
             losses = 0;
             animal = ["cat", "dog", "cow", "reindeer"];
-            songs = [{ filename: "abc.mp3", singer: "abc", album: "Album_nice" },
-    { filename: "def1.mp3", singer: "ladygaga", album: "Album_latest" },
-    { filename: "def2.mp3", singer: "jackson", album: "Album_new" },
-    { filename: "def3.mp3", singer: "britney", album: "Album_old" }
-    // and so on...
-];
+            songs = [{
+                    filename: "abc.mp3",
+                    singer: "abc",
+                    album: "Album_nice"
+                }, {
+                    filename: "def1.mp3",
+                    singer: "ladygaga",
+                    album: "Album_latest"
+                }, {
+                    filename: "def2.mp3",
+                    singer: "jackson",
+                    album: "Album_new"
+                }, {
+                    filename: "def3.mp3",
+                    singer: "britney",
+                    album: "Album_old"
+                }
+                // and so on...
+            ];
             messages = {
                 win: 'You win!',
                 lose: 'Game over!',
@@ -27,20 +40,20 @@
             numLettersMatched = 0;
 
             /* choose a singer */
-           // currentSinger = animal[Math.floor(Math.random() * animal.length)];
+            // currentSinger = animal[Math.floor(Math.random() * animal.length)];
 
             var randomIndex = Math.floor(Math.random() * songs.length);
             var song = songs[randomIndex];
             document.querySelector("source").src = song.filename;
-           // document.getElementById("songSinger").textContent = song.singer;
-            document.getElementById("songAlbum").textContent = song.album;
+            //document.getElementById("songSingerDisplay").textContent = song.singer;
+            //document.getElementById("songAlbum").textContent = song.album;
 
 
             currentSinger = song.singer;
-            console.log("song: " +song.filename);
-            console.log("singer: "+ song.singer);
-            console.log("singer type: "+ typeof currentSinger);
-            
+            console.log("song: " + song.filename);
+            console.log("singer: " + song.singer);
+            console.log("singer type: " + typeof currentSinger);
+
 
 
             /* make #man and #output blank, create vars for later access */
@@ -66,7 +79,7 @@
 
         } // setup function closing
 
-      function startOver() {
+        function startOver() {
             /* start configuration optsions */
             availableLetters = "abcdefghijklmnopqrstuvwxyz";
             tries = 5;
@@ -74,8 +87,8 @@
             //losses = 0;
             animal = ["cat", "dog", "cow", "reindeer"];
             messages = {
-                win: 'You win!',
-                lose: 'Game over!',
+                win: 'You win $5000!',
+                lose: 'hmm..Try again!',
                 guessed: ' already guessed, please try again...',
                 validLetter: 'Please enter a letter from A-Z'
             };
@@ -87,17 +100,17 @@
             /* choose a singer */
             //currentSinger = animal[Math.floor(Math.random() * animal.length)];
 
-             var randomIndex = Math.floor(Math.random() * songs.length);
+            var randomIndex = Math.floor(Math.random() * songs.length);
             var song = songs[randomIndex];
             document.querySelector("source").src = song.filename;
             //document.getElementById("songSinger").textContent = song.singer;
-            document.getElementById("songAlbum").textContent = song.album;
+            //document.getElementById("songAlbumDisplay").textContent = song.album;
 
 
             currentSinger = song.singer;
-            
-           console.log("guessed singer " + currentSinger);
-                
+
+            console.log("guessed singer " + currentSinger);
+
 
 
             /* make #man and #output blank, create vars for later access */
@@ -118,115 +131,109 @@
             for (i = 0; i < currentSinger.length; i++) {
                 letter = '<li class="letter letter' + currentSinger.charAt(i).toUpperCase() + '">' + currentSinger.charAt(i).toUpperCase() + '</li>';
                 letters.insertAdjacentHTML('beforeend', letter);
-                console.log("display letter: "+letter);
+                console.log("display letter: " + letter);
             }
 
-        } 
+        }
         /* Continue game after win or loss, also display message */
         function gameOver(win) {
             if (win) {
                 output.innerHTML = messages.win;
                 output.classList.add('win');
                 wins++;
-                document.getElementById("wins").innerHTML=(wins);
+                document.getElementById("wins").innerHTML = (wins);
                 //startOver();
 
             } else {
                 output.innerHTML = messages.lose;
                 output.classList.add('error');
                 losses++;
-                document.getElementById("losses").innerHTML=(losses);
+                document.getElementById("losses").innerHTML = (losses);
                 console.log("losses: " + losses);
-                document.getElementById("songSinger").innerHTML=(currentSinger);
+               // document.getElementById("songSinger").innerHTML = (currentSinger);
                 //startOver();
             }
             startOver();
         }
 
+        /* Provide hint */
+        function giveHint() {
+            document.getElementById("songAlbumDisplay").innerHTML = song.album;
+        }
         /* Start game - should ideally check for existing functions attached to window.onload */
         window.onload = setup();
 
         /* buttons */
-        
+
         document.getElementById("restart").onclick = setup;
-        
-       
-        document.onkeyup = function(e) {                                       //1 open
+
+
+        document.onkeyup = function(e) { //1 open
             guess = String.fromCharCode(event.keyCode).toLowerCase();
-            console.log("press letter: "+guess);
+            console.log("press letter: " + guess);
             //guess = guessInput.value;
             /* does guess have a value? if yes continue, if no, error */
-            if (guess) {                                                       //2 open
+            if (guess) { //2 open
                 /* is guess a valid letter? if so carry on, else error */
-                
-                if (availableLetters.indexOf(guess) > -1) {                     //3rd open
+
+                if (availableLetters.indexOf(guess) > -1) { //3rd open
 
                     /* has it been guessed (missed or matched) already? if so, abandon & add notice */
-                    
 
-                    if ((lettersMatched && lettersMatched.indexOf(guess) > -1) || (lettersGuessed && lettersGuessed.indexOf(guess) > -1)) {                                                              //4 open
+
+                    if ((lettersMatched && lettersMatched.indexOf(guess) > -1) || (lettersGuessed && lettersGuessed.indexOf(guess) > -1)) { //4 open
                         output.innerHTML = '"' + guess.toUpperCase() + '"' + messages.guessed;
                         output.classList.add("warning");
-                    }                                                                              //4 close
-                    
+                    } //4 close
+
                     /* does guess exist in current word? if so, add to letters already matched, if final letter added, game over with win message */
-                    else if (currentSinger.indexOf(guess) > -1) {               //5 open
+                    else if (currentSinger.indexOf(guess) > -1) { //5 open
                         var lettersToShow;
                         lettersToShow = document.querySelectorAll(".letter" + guess.toUpperCase());
                         console.log("lettersToShow: " + lettersToShow);
-                        
-                        for (var i = 0; i < lettersToShow.length; i++) {           //6 open
+
+                        for (var i = 0; i < lettersToShow.length; i++) { //6 open
                             lettersToShow[i].classList.add("correct");
-                        }                                                           //6 close
+                        } //6 close
 
                         /* check to see if letter appears multiple times */
-                        for (var j = 0; j < currentSinger.length; j++) {             //7 open
-                            if (currentSinger.charAt(j) === guess) {                 //8 open
+                        for (var j = 0; j < currentSinger.length; j++) { //7 open
+                            if (currentSinger.charAt(j) === guess) { //8 open
                                 numLettersMatched += 1;
-                            }                                                       //8 close
-                        }                                                           // 7 close
+                            } //8 close
+                        } // 7 close
 
                         lettersMatched += guess;
-                        if (numLettersMatched === currentSinger.length) {             //9 open
+                        if (numLettersMatched === currentSinger.length) { //9 open
                             gameOver(true);
 
-                        }                                                            //9 close
+                        } //9 close
 
                     } // elseif closing                                               5 close
-                    else {                                                            //10 open
+                    else { //10 open
                         lettersGuessed += guess;
                         tries--;
-                        man.innerHTML =  tries + '  remaining';
+                        man.innerHTML = tries + '  remaining';
                         if (tries === 0) gameOver();
-                        document.getElementById("tries").innerHTML=(tries);
+                        document.getElementById("tries").innerHTML = (tries);
 
-                    }                                                                //10 close
+                    } //10 close
 
                 } // valid letter or not                                       3rd close                                       
                 /* not a valid letter, error */
-                else {                                                          //11 open
+                else { //11 open
                     output.classList.add('error');
                     output.innerHTML = messages.validLetter;
-                }                                                               //11 close
+                } //11 close
 
-            }                                                                    //2 close
-
-            else {                                                               //12 open               
+            } //2 close
+            else { //12 open               
 
                 output.classList.add('error');
                 output.innerHTML = messages.validLetter;
-               }                                                                //12 close
-                                                                               
+            } //12 close
+
             return false;
 
         }; //function onkeyup                                                    //  1 close main guess closing
     }()); //main function 1st line
-
-    //  //start game, create button
-
-    //  //start playing songs
-
-    //  //make variable for singers.
-
-    //    var options = ["ladygaga", "jackson", "elton"];  //create songs object with song and singers
- 

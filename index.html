@@ -1,15 +1,40 @@
-<html>
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <title>Hangman Game</title>
-    <link rel="stylesheet" type="text/css" href="./assets/css/style.css">
-    <!-- <link rel="stylesheet" type="text/css" href="/assets/css/reset.css"> --> 
-</head>
+  <title>Parendu Profile</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="./assets/css/style.css">
 
+</head>
 <body>
-    <!-- Display labels for games - Guess My letter, Wins, Losses, Chances Left and Letters Guessed. -->
-    <h1>Hangman Game</h1>
+<script src="./assets/javascript/game.js"></script>
+<!-- <nav class="navbar navbar-inverse"> -->
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+        
+         <a class="navbar-brand" style="font-size:24px">Parendu Parikh</a>
+    </div>
+    
+  </div>
+</nav>
+
+<!-- main container -->
+<div class="container-fluid text-center">    
+  <div class="row content aboutme">
+ 
+    <div class="col-sm-7 col-md-8 text-center"> 
+      <h1>Hangman Game</h1>
+      <hr>    
+      <!-- Header completed -->
+      <!-- Image and content-->
+    
+    <br>
+    <br> 
     <h2>Click on "Start" button to Start Game</h2>
     <button id="restart" name="restart" type="button">Start</button>
 
@@ -18,21 +43,52 @@
     <audio controls>
   
   <source src="abc.mp3" type="audio/mpeg">
-Your browser does not support the audio element.
-</audio>
+
+  </audio>
     
     <h2> Guess Singer</h2>
     <ul id="letters"></ul>
-    <h3>Wins: <span id="wins"></span></h3></h3>
-    <h3>Losses: <span id="losses"></span></h3>
+    <br>
     <h3>Chances Left: <span id="tries"></span></h3>
-    <b>Filename</b>: <span id='source'></span><br>
-    <b>Currect Singer</b>: <span id='songSinger'></span><br>
-    <b>Album</b>: <span id='songAlbum'></span><br>
+    <br>
+
+
     <p id="man"></p>
     <p id="output" class="output"></p>
-	
- <script src="./assets/javascript/game.js"></script>
+
+    </div>
+  
+  <!-- sidenav for connect me -->
+<div class="col-sm-4 col-md-3 sidenav">
+  
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="well">
+       <h3>Scores</h3>
+        <hr>
+        <h3>Wins: <span id="wins" text-align="left"></span></h3></h3>
+        <h3>Losses: <span id="losses"></span></h3>
+      </div>
+      </div>
+    <div class="col-sm-12">
+      <div class="well">
+       <h3>Hints:</h3>
+        <hr>
+        <!-- Contextual button for informational alert messages -->
+        <button type="button" class="btn btn-info" onclick="giveHint()">Album</button>
+        <button onclick="giveHint()">Click me</button>
+        <!-- <b>Currect Singer</b>: <span id="demo"></span><br> -->
+        <!-- <b id="demo"></span><br> -->
+      </div>
+     </div>
+</div>
+  <div class="col-sm-1 col-md-1" background-color="#323333">
+    </div>
+
+   </div>  <!-- row ending -->
+</div> <!-- container ending -->
+	<script src="./assets/javascript/game.js"></script>
+ 
 
 </body>
 </html>
