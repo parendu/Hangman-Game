@@ -32,12 +32,12 @@
       <hr>    
       <!-- Header completed -->
       <!-- Image and content-->
-    
+    <h2>Who is singing?</h2>
     <br>
+    <ul id="letters"></ul><br>
     <br> 
     <h2>Click on "Start" button to Start Game</h2>
     <button id="restart" name="restart" type="button">Start</button>
-
     <br>
     <br>
     <audio controls>
@@ -45,28 +45,22 @@
   <source src="abc.mp3" type="audio/mpeg">
 
   </audio>
-    
-    <h2> Guess Singer</h2>
-    <ul id="letters"></ul>
     <br>
-    <h3>Chances Left: <span id="tries"></span></h3>
     <br>
-
-
     <p id="man"></p>
     <p id="output" class="output"></p>
 
     </div>
   
   <!-- sidenav for connect me -->
-<div class="col-sm-4 col-md-3 sidenav">
+<div class="col-sm-3 col-md-2 sidenav">
   
   <div class="row">
     <div class="col-sm-12">
       <div class="well">
-       <h3>Scores</h3>
+       <h3>Scores:</h3>
         <hr>
-        <h3>Wins: <span id="wins" text-align="left"></span></h3></h3>
+        <h3>Wins: <span id="wins" style="text-left"></span></h3></h3>
         <h3>Losses: <span id="losses"></span></h3>
       </div>
       </div>
@@ -74,11 +68,13 @@
       <div class="well">
        <h3>Hints:</h3>
         <hr>
-        <!-- Contextual button for informational alert messages -->
-        <button type="button" class="btn btn-info" onclick="giveHint()">Album</button>
-        <button onclick="giveHint()">Click me</button>
-        <!-- <b>Currect Singer</b>: <span id="demo"></span><br> -->
-        <!-- <b id="demo"></span><br> -->
+        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Album</button>
+                        <div class="collapse" id="collapseExample">
+                            <div class="well">
+                             <p>WORK HARD!</p>
+                            </div>
+                        
+                        </div>
       </div>
      </div>
 </div>
@@ -87,7 +83,7 @@
 
    </div>  <!-- row ending -->
 </div> <!-- container ending -->
-	<script src="./assets/javascript/game.js"></script>
+  <script src="./assets/javascript/game.js"></script>
  
 
 </body>

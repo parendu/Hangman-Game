@@ -118,7 +118,7 @@
             man = document.getElementById("man");
             guessInput = document.getElementById("letter");
 
-            man.innerHTML = tries + ' lives remaining';
+            man.innerHTML = 'You have ' + tries + ' lives remaining';
             output.innerHTML = '';
 
             document.getElementById("letters").value = '';
@@ -213,7 +213,7 @@
                     else { //10 open
                         lettersGuessed += guess;
                         tries--;
-                        man.innerHTML = tries + '  remaining';
+                        man.innerHTML = 'You have ' + tries + ' lives remaining';
                         if (tries === 0) gameOver();
                         document.getElementById("tries").innerHTML = (tries);
 
